@@ -14,12 +14,12 @@
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('master');
 });
-
 Route::get('/public', function () {
     return 'nama saya Susanti';
 });
+
 
 Route::get('pengguna', 'penggunacontroller@awal'); 
 Route::get('pengguna/tambah', 'penggunacontroller@tambah'); 
@@ -41,3 +41,23 @@ Route::get('jadwal_matakuliah/tambah','jadwal_matakuliahController@tambah');
 
 Route::get('ruangan','ruanganController@awal'); 
 Route::get('ruangan/tambah','ruanganController@tambah');
+
+Route::get('pengguna/{pengguna}','penggunacontroller@lihat'); 
+Route::post('pengguna/simpan', 'penggunacontroller@simpan');
+Route::get('pengguna/edit/{pengguna}','penggunaController@edit'); 
+Route::post('pengguna/edit/{pengguna}','penggunaController@update');
+Route::get('pengguna/edit/{pengguna}','penggunacontroller@hapus');
+
+Route::get('matakuliah/{matakuliah}','matakuliahController@lihat');
+Route::post('matakuliah/simpan','matakuliahController@simpan'); 
+Route::get('matakuliah/edit/{matakuliah}','matakuliahController@edit');
+Route::post('matakuliah/edit/{matakuliah}','matakuliahController@update');
+Route::get('matakuliah/hapus/{matakuliah}','matakuliahController@hapus');
+
+Route::post('ruangan/simpan','ruanganController@simpan'); 
+Route::get('ruanfan/edit/{ruangan}','ruanganController@edit');
+Route::post('ruangan/edit/{ruangan}','ruanganController@update');
+Route::get('ruangan/hapus/{ruangan}','ruanganController@hapus');
+
+
+
