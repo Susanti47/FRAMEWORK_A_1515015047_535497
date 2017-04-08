@@ -5,56 +5,58 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\jadwal_matakuliah;
-class jadwal_matakuliahController extends Controller
+use App\Jadwal_Matakuliah;
+use App\Mahasiswa;
+use App\Dosen_Matakuliah;
+use App\Ruangan;
+
+class Jadwal_MatakuliahController extends Controller
 {
-    public function awal() 
-    {
-    	return view('jadwal_matakuliah.awal',['data'=>jadwal_matakuliah::all()]);
-}
-    public function tambah()
-    {
-    	return view('jadwal_matakuliah.tambah');
+  protected $informasi = 'Gagal Melakukan Aksi';
+    public function awal()
+  {
+    $semuaJadwalMatakuliah = Jadwal_Matakuliah::all();
+    return view('jadwal_matakuliah.awal',compact('semuaJadwalMatakuliah'));
+  }
+
+  public function tambah()
+  {
+    $mahasiswa = new Mahasiswa;
+    $ruangan = new Ruangan;
+    $dosen_matakuliah = new Dosen_Matakuliah;
+    return view('jadwal_matakuliah.tambah',compact('mahasiswa','dosen_matakuliah','ruangan'));
+  }
+
+   public function simpan(Request $input)
+  {
+    $jadwal_matakuliah = new Jadwal_Matakuliah($input->only('ruangan_id','dosen_matakuliah_id','mahasiswa_id')); 
+    if($jadwal_matakuliah->save()) $this->informasi= 'Jadwal Mahasiswa Berhasil Di Simpan';
+    return redirect('jadwal_matakuliah')->with(['informasi'=>$this->informasi]);
+  }
+
+  public function edit($id){
+    $jadwal_matakuliah = Jadwal_Matakuliah::find($id);
+    $mahasiswa = new Mahasiswa;
+    $ruangan = new Ruangan;
+    $dosen_matakuliah = new Dosen_Matakuliah;
+    return view('jadwal_matakuliah.edit',compact('mahasiswa','ruangan','dosen_matakuliah','jadwal_matakuliah'));
+  }
+  public function lihat($id){
+    $jadwal_matakuliah = Jadwal_Matakuliah::find($id);
+      return view('jadwal_matakuliah.lihat')->with(array('jadwal_matakuliah'=>$jadwal_matakuliah));
     }
-
-	public function simpan(Requests $input) 
-	{
-		$jadwal_matakuliah = new jadwal_matakuliah();
-		$jadwal_matakuliah->mahasiswa_id = $input->mahasiswa_id;
-		$jadwal_matakuliah->ruangan_id = $input->ruangan_id;
-		$jadwal_matakuliah->dosen_matakuliah = $input->dosen_matakuliah;
-		$informasi = $jadwal_matakuliah->save() ? 'berhasil simpan data' : 'gagal simpan data';
-		return redirect('jadwal_matakuliah')->with(['informasi'=>$informasi]);
-		}
-	public function edit($id)
-	{
-		$jadwal_matakuliah = jadwal_matakuliah::find($id);
-		return view('jadwal_matakuliah.edit')->with(array('jadwal_matakuliah'=>$jadwal_matakuliah));
-	}
-	public function lihat($id)
-	{
-		$jadwal_matakuliah = jadwal_matakuliah::find($id);
-		return view('jadwal_matakuliah.lihat')->with(array('jadwal_matakuliah'=>$jadwal_matakuliah));
-	}
-	public function update($id, Request $input)
-	{
-		$jadwal_matakuliah = new jadwal_matakuliah();
-		$jadwal_matakuliah->nama = $input->nama;
-		$jadwal_matakuliah->nim = $input->nim;
-		$jadwal_matakuliah->alamat = $input->alamat;
-		$informasi = $jadwal_matakuliah-> save() ? 'berhasil update data' : 'gagal update data';
-		return redirect('jadwal_matakuliah')->with(['informasi'=>$informasi]);
-	}
-	public function hapus($id)
-	{
-		$jadwal_matakuliah = jadwal_matakuliah::find($id);
-		$jadwal_matakuliah = $jadwal_matakuliah->delete() ? 'berhasil hapus data' : 'gagal hapus data';
-		return redirect('jadwal_matakuliah')->with(['informasi'=>$informasi]);
-	}
+  public function update($id, Request $input){
+    $jadwal_matakuliah = Jadwal_Matakuliah::find($id);
+    $jadwal_matakuliah->ruangan_id = $input->ruangan_id;
+    $jadwal_matakuliah->dosen_matakuliah_id = $input->dosen_matakuliah_id;
+    $jadwal_matakuliah->mahasiswa_id = $input->mahasiswa_id;
+    $informasi = $jadwal_matakuliah->save() ? 'Berhasil Update Data' : 'Gagal Update Data';
+    return redirect('jadwal_matakuliah')->with(['informasi'=>$informasi]);
+  }
+  public function hapus($id){
+    $jadwal_matakuliah = Jadwal_Matakuliah::find($id);
+    $informasi = $jadwal_matakuliah->delete()? 'Berhasil Hapus Data' : 'Gagal Hapus Data';
+    return redirect('jadwal_matakuliah')->with(['informasi'=>$informasi]);
+  }
 }
-
-
-
-
-
 

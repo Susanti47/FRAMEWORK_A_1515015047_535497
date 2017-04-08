@@ -31,14 +31,15 @@
             }
 
             .title {
-                font-size: 96px;
+                font-size: 50px;
+                   font-weight: 100;
             }
         </style>
     </head>
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Laravel 5</div>
+                <div class="title">Nama : Susanti <br>Nim  : 1515015047</div>
             </div>
         </div>
     </body>

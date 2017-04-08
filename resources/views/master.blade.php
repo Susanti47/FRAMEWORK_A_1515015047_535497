@@ -57,8 +57,8 @@
                         <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pengaturan <span class="caret"></span></a>
                         <ul class="dropdown-menu" aria-labelledby="dLabel">
                             <li><a href="{{url('pengguna')}}">Pengguna</a></li>
-                            <li class="divider"></li><li><a href="{{url('ruangan')}}">Ruangan</a></li>
-                            <li><a href="{{url('matakuliah')}}">Matakuliah</a></li>
+                            <li><a href="{{url('ruangan')}}">Ruangan</a></li>
+                            <li><a href="{{url('matakuliah')}}">Mata Kuliah</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -77,7 +77,7 @@
     </div>
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <footer class="container">
-            created by <a href=""><span><i class="" style="color:#1daf12"></i>Desy Mila Santi</a>
+            created by <a href=""><span><i class="" style="color:#1daf12"></i>Susanti</a>
         </footer>
     </nav>
     <script type="text/javascript" src="{{asset('component/jquery/dist/jquery.min.js')}}"></script>

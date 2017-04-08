@@ -4,20 +4,20 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class pengguna extends Model
+class Pengguna extends Model
 {
-	protected $table ='pengguna';
-	protected $fillabel =['username', 'password'];
-    		public function mahasiswa()
-    		{
-    			return $this->hasOne(mahasiswa::class);
-    		}
-    		public function dosen()
-    		{
-    			return $this->hasOne(Dosen::class);
-    		}
-    		public function peran()
-    		{
-    			return $this->belongToMany(peran::class);
-    		}
+  protected $table = 'pengguna';
+    protected $fillable = ['username','password'];
+
+    public function mahasiswa(){
+		return $this->hasOne(Mahasiswa::class);
+	}
+
+	public function dosen(){
+		return $this->hasOne(Dosen::class);
+	}
+
+	public function peran(){
+		return $this->belongToMany(Peran::class);
+	}
 }
