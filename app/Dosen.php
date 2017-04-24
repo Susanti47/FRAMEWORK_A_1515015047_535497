@@ -31,5 +31,5 @@ class Dosen extends Model
     		$out [$dsnMtk->id] = "{$dsnMtk->dosen->nama} {$dsnMtk->nip} (matakuliah {$dsnMtk->matakuliah->title})";
     	}
     return $out;
-}
+        }
 }

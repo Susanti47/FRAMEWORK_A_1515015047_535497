@@ -9,6 +9,7 @@ use App\Jadwal_Matakuliah;
 use App\Mahasiswa;
 use App\Dosen_Matakuliah;
 use App\Ruangan;
+use App\Http\Requests\Jadwal_MatakuliahRequest;
 
 class Jadwal_MatakuliahController extends Controller
 {
@@ -27,7 +28,7 @@ class Jadwal_MatakuliahController extends Controller
     return view('jadwal_matakuliah.tambah',compact('mahasiswa','dosen_matakuliah','ruangan'));
   }
 
-   public function simpan(Request $input)
+   public function simpan(Jadwal_MatakuliahRequest $input)
   {
     $jadwal_matakuliah = new Jadwal_Matakuliah($input->only('ruangan_id','dosen_matakuliah_id','mahasiswa_id')); 
     if($jadwal_matakuliah->save()) $this->informasi= 'Jadwal Mahasiswa Berhasil Di Simpan';
@@ -45,7 +46,7 @@ class Jadwal_MatakuliahController extends Controller
     $jadwal_matakuliah = Jadwal_Matakuliah::find($id);
       return view('jadwal_matakuliah.lihat')->with(array('jadwal_matakuliah'=>$jadwal_matakuliah));
     }
-  public function update($id, Request $input){
+  public function update($id, Jadwal_MatakuliahRequest $input){
     $jadwal_matakuliah = Jadwal_Matakuliah::find($id);
     $jadwal_matakuliah->ruangan_id = $input->ruangan_id;
     $jadwal_matakuliah->dosen_matakuliah_id = $input->dosen_matakuliah_id;

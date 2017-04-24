@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charshet="UTF-8">     
+    <meta charshet="UTF-8">   
     <title>@yield('page_tittle','Halaman Awal') | Pemrograman Framework</title>
     <link rel="stylesheet" type="text/css" href="{{asset('component/bootstrap/dist/css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('component/font-awesome/css/font-awesome.min.css')}}">
@@ -51,6 +51,7 @@
                             <li><a href="{{url('dosen')}}">Data Dosen</a></li>
                             <li class="divider"></li>
                             <li><a href="{{url('dosen_matakuliah')}}">Jadwal Dosen Mengajar</a></li>
+
                         </ul>
                     </li>
                     <li class="dropdown active">
@@ -61,18 +62,29 @@
                             <li><a href="{{url('matakuliah')}}">Mata Kuliah</a></li>
                         </ul>
                     </li>
+                    <li class="divider" ></li>
+                <li> <a href="{{url('logout')}}">Logout</a></li>
                 </ul>
                 
             </div><!--/.nav-collapse -->
         </div>
     </nav>
-    <div class="clearfix"></div>
+    <div class="clearfix" ></div>
     <div class="container">
         @if (Session::has('informasi'))
         <div class="alert alert-info">
             <strong>Informasi: </strong>{{Session::get('informasi')}}
         </div>
         @endif  
+        @if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div> 
+    @endif 
         @yield('container')
     </div>
     <nav class="navbar navbar-default navbar-fixed-bottom">

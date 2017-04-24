@@ -6,16 +6,16 @@
 		<a href="{{ url('jadwal_matakuliah/tambah') }}" class="btn btn-xs btn-primary pull-right"> <i class="fa fa-plus"></i> Jadwal Mahasiswa </a>
 		<div class="clearfix"></div>
 		</div>
-		<table class="table">
-			<thead>
-				<tr>
-					<th>No.</th>
-					<th>Nama Mahasiswa</th>
-					<th>NIM Mahasiswa</th>
-					<th>Nama Matkuliah</th>
-					<th>Aksi</th>
-				</tr>
-			</thead>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>Nama Mahasiswa</th>
+						<th>NIM Mahasiswa</th>
+						<th>Nama Matkuliah</th>
+						<th>Aksi</th>
+					</tr>
+				</thead>
 			<tbody>
 				<?php $x=1;?>
 				@foreach ($semuaJadwalMatakuliah as $jadwal)
