@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/public', function () {
-   return 'Nama Saya : Nimah Moham';
+   return 'Nama Saya : Susanti';
 });
 */
 
